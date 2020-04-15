@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.ddd.infrastracture.h2.query.UserQueryMapper">
+
+	<select id="selectAll" resultType="com.example.ddd.application.user.query.dto.UserQueryOutputDto">
+		SELECT
+		  user.id,
+		  user.first_name,
+		  user.last_name,
+		  user.gender,
+		  user.birth_day,
+		  user.mail_address,
+		  task.id as taskId,
+		  task.name as taskName
+		FROM user
+		INNER JOIN task
+		ON user.id = task.user_id
+	</select>
+
+</mapper>

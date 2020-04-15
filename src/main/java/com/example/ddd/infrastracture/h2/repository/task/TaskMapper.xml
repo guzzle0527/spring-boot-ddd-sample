@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.ddd.infrastracture.h2.repository.task.TaskMapper">
+
+	<select id="selectIdentity" resultType="int">
+		SELECT "seq_task_id".nextval
+	</select>
+
+	<insert id="insert">
+		INSERT INTO task
+		VALUES
+		(
+		  #{task.taskId.value},
+		  #{task.taskName.value},
+		  #{task.userId.value},
+		  #{now},
+		  #{now}
+		)
+	</insert>
+
+	<select id="selectCountByUserId" resultType="int">
+		SELECT count(id)
+		FROM task
+		WHERE user_id = #{userId}
+	</select>
+
+</mapper>

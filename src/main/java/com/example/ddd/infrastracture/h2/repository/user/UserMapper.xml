@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.ddd.infrastracture.h2.repository.user.UserMapper">
+
+	<select id="selectByUserId" resultType="com.example.ddd.domain.model.user.UserEntity">
+		SELECT
+		  id as "userId.value",
+		  first_name as "userName.firstName",
+		  last_name as "userName.lastName",
+		  gender as "gender.value",
+		  birth_day as "birthDay.value",
+		  mail_address as "mailAddress.value"
+		FROM user
+		WHERE
+		  id = #{userId.value}
+	</select>
+
+	<select id="selectByMailAddress" resultType="com.example.ddd.domain.model.user.UserEntity">
+		SELECT
+		  id as "userId.value",
+		  first_name as "userName.firstName",
+		  last_name as "userName.lastName",
+		  gender as "gender.value",
+		  birth_day as "birthDay.value",
+		  mail_address as "mailAddress.value"
+		FROM user
+		WHERE
+		  mail_address = #{mailAddress.value}
+	</select>
+
+	<select id="selectIdentity" resultType="int">
+		SELECT "seq_user_id".nextval
+	</select>
+
+	<insert id="insert">
+		INSERT INTO user
+		VALUES
+		(
+		  #{user.userId.value},
+		  #{user.userName.firstName},
+		  #{user.userName.lastName},
+		  #{user.gender.value},
+		  #{user.birthDay.value},
+		  #{user.mailAddress.value},
+		  #{now},
+		  #{now}
+		)
+	</insert>
+</mapper>
